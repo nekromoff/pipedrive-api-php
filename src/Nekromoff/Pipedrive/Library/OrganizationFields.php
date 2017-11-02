@@ -1,10 +1,14 @@
-<?php namespace Benhawker\Pipedrive\Library;
+<?php namespace Nekromoff\Pipedrive\Library;
 
 /**
- * Mail Threads Methods
+ * Pipedrive Organizations Methods
+ *
+ * Organizations are companies and other kinds of organizations you are making
+ * Deals with. Persons can be associated with organizations so that each
+ * organization can contain one or more Persons.
  *
  */
-class MailThreads
+class OrganizationFields
 {
     /**
      * Hold the pipedrive cURL session
@@ -15,7 +19,7 @@ class MailThreads
     /**
      * Initialise the object load master class
      */
-    public function __construct(\Benhawker\Pipedrive\Pipedrive $master)
+    public function __construct(\Nekromoff\Pipedrive\Pipedrive $master)
     {
         //associate curl class
         $this->curl = $master->curl();
@@ -29,7 +33,7 @@ class MailThreads
      */
     public function getById($id)
     {
-        return $this->curl->get('mailbox/mailThreads/' . $id);
+        return $this->curl->get('organizationFields/' . $id);
     }
 
     /**
@@ -38,8 +42,8 @@ class MailThreads
      * @param  array $data (filter_id, start, limit, sort_by, sort_mode)
      * @return array returns detials of all organizations
      */
-    public function getAll($data = array('folder'=>'inbox'))
+    public function getAll()
     {
-        return $this->curl->get('mailbox/mailThreads', $data);
+        return $this->curl->get('organizationFields');
     }
 }

@@ -1,6 +1,6 @@
-<?php namespace Benhawker\Pipedrive\Library;
+<?php namespace Nekromoff\Pipedrive\Library;
 
-use Benhawker\Pipedrive\Exceptions\PipedriveMissingFieldError;
+use Nekromoff\Pipedrive\Exceptions\PipedriveMissingFieldError;
 
 /**
  * Pipedrive Deals Methods
@@ -18,14 +18,14 @@ class Deals
 {
     /**
      * Hold the pipedrive cURL session
-     * @var \Benhawker\Pipedrive\Library\Curl Curl Object
+     * @var \Nekromoff\Pipedrive\Library\Curl Curl Object
      */
     protected $curl;
 
     /**
      * Initialise the object load master class
      */
-    public function __construct(\Benhawker\Pipedrive\Pipedrive $master)
+    public function __construct(\Nekromoff\Pipedrive\Pipedrive $master)
     {
         //associate curl class
         $this->curl = $master->curl();
@@ -56,10 +56,10 @@ class Deals
     public function getByName($name, $personId=null, $orgId=null)
     {
         $params = array('term' => $name);
-        if($personId) {
+        if ($personId) {
             $params['person_id'] = $personId;
         }
-        if($orgId) {
+        if ($orgId) {
             $params['org_id'] = $orgId;
         }
         return $this->curl->get('deals/find', $params);
@@ -146,5 +146,4 @@ class Deals
     {
         return $this->curl->put('deals/' . $dealId, array('stage_id' => $stageId));
     }
-
 }

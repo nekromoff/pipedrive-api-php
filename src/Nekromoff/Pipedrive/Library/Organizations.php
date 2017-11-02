@@ -1,12 +1,12 @@
-<?php namespace Benhawker\Pipedrive\Library;
+<?php namespace Nekromoff\Pipedrive\Library;
 
-use Benhawker\Pipedrive\Exceptions\PipedriveMissingFieldError;
+use Nekromoff\Pipedrive\Exceptions\PipedriveMissingFieldError;
 
 /**
  * Pipedrive Organizations Methods
  *
- * Organizations are companies and other kinds of organizations you are making 
- * Deals with. Persons can be associated with organizations so that each 
+ * Organizations are companies and other kinds of organizations you are making
+ * Deals with. Persons can be associated with organizations so that each
  * organization can contain one or more Persons.
  *
  */
@@ -17,11 +17,11 @@ class Organizations
      * @var Curl Object
      */
     protected $curl;
-    
+
     /**
      * Initialise the object load master class
      */
-    public function __construct(\Benhawker\Pipedrive\Pipedrive $master)
+    public function __construct(\Nekromoff\Pipedrive\Pipedrive $master)
     {
         //associate curl class
         $this->curl = $master->curl();
@@ -38,7 +38,7 @@ class Organizations
         return $this->curl->get('organizations/' . $id);
     }
 
-	/**
+    /**
      * Returns an organization
      *
      * @param  string $name pipedrive organizations name
@@ -50,8 +50,8 @@ class Organizations
         $data['term'] = $name;
         return $this->curl->get('organizations/find', $data);
     }
-    
-      
+
+
     /**
      * Returns all organizations
      *
@@ -62,7 +62,7 @@ class Organizations
     {
         return $this->curl->get('organizations/', $data);
     }
-    
+
     /**
      * Lists deals associated with a organization.
      *

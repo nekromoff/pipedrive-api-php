@@ -1,7 +1,7 @@
-<?php namespace Benhawker\Pipedrive\Library;
+<?php namespace Nekromoff\Pipedrive\Library;
 
-use Benhawker\Pipedrive\Exceptions\PipedriveApiError;
-use Benhawker\Pipedrive\Exceptions\PipedriveHttpError;
+use Nekromoff\Pipedrive\Exceptions\PipedriveApiError;
+use Nekromoff\Pipedrive\Exceptions\PipedriveHttpError;
 
 /**
  * This class does the cURL requests for Pipedrive
