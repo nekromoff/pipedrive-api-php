@@ -3,7 +3,7 @@ PipeDrive-api-php
 
 PHP API client library for the PipeDrive CRM
 
-Based on Ben Hawker's PipeDrive API that has been not activale developed since 2014.
+Based on Ben Hawker's PipeDrive API that has been not actively developed since 2014.
 
 Only some basic functionality required for my current project has been added. However the basic blocks are to make use of the whole API including file uploading.
 
