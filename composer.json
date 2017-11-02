@@ -1,6 +1,8 @@
 {
     "name": "nekromoff/pipedrive",
-    "replace": "benhawker/pipedrive",
+    "replace": {
+    "benhawker/pipedrive":"*"
+    },
     "type": "library",
     "version": "0.2",
     "description": "API client library for the Pipedrive CRM",
