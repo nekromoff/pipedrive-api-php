@@ -42,6 +42,11 @@ class Deals
         return $this->curl->get('deals/' . $id);
     }
 
+    public function getAll($data)
+    {
+        return $this->curl->get('deals/', $data);
+    }
+
     /**
      * Returns a deal / deals
      *
@@ -91,7 +96,7 @@ class Deals
 
         return $this->curl->post('deals', $data);
     }
-    
+
     /**
      * Adds a product to a deal
      *

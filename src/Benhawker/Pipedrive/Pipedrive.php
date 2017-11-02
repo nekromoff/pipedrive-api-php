@@ -1,6 +1,6 @@
 <?php namespace Benhawker\Pipedrive;
 
-    /**
+/**
  * Pipedrive API wrapper class v0.1
  *
  * Author: Ben Hawker (ben@tickettoridegroup.com) 2014
@@ -28,7 +28,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-*/
+ */
 
 class Pipedrive
 {
@@ -104,10 +104,10 @@ class Pipedrive
     public function __construct($apiKey = '', $protocol = 'https', $host = 'api.pipedrive.com', $version = 'v1')
     {
         //set var apiKey is essiantial!!
-        $this->apiKey   = $apiKey;
+        $this->apiKey = $apiKey;
         $this->protocol = $protocol;
-        $this->host     = $host;
-        $this->version  = $version;
+        $this->host = $host;
+        $this->version = $version;
 
         //make API url
         $url = $protocol . '://' . $host . '/' . $version;
@@ -116,13 +116,15 @@ class Pipedrive
         $this->curl = new Library\Curl($url, $apiKey);
 
         //add pipedrive classes to the assoicated property
-        $this->persons       = new Library\Persons($this);
-        $this->deals         = new Library\Deals($this);
-        $this->activities    = new Library\Activities($this);
-        $this->notes         = new Library\Notes($this);
-        $this->dealFields    = new Library\DealFields($this);
+        $this->persons = new Library\Persons($this);
+        $this->deals = new Library\Deals($this);
+        $this->activities = new Library\Activities($this);
+        $this->notes = new Library\Notes($this);
+        $this->dealFields = new Library\DealFields($this);
         $this->organizations = new Library\Organizations($this);
-        $this->products      = new Library\Products($this);
+        $this->organizationFields = new Library\OrganizationFields($this);
+        $this->mailThreads = new Library\MailThreads($this);
+        $this->products = new Library\Products($this);
     }
 
     /**
@@ -193,6 +195,21 @@ class Pipedrive
     public function organizations()
     {
         return $this->organizations;
+    }
+
+    /**
+     * Returns the Pipedrive Organizations Object
+     *
+     * @return Organizations Object
+     */
+    public function organizationFields()
+    {
+        return $this->organizationFields;
+    }
+
+    public function mailThreads()
+    {
+        return $this->mailThreads;
     }
 
     /**

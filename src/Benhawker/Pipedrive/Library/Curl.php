@@ -1,7 +1,7 @@
 <?php namespace Benhawker\Pipedrive\Library;
 
-use Benhawker\Pipedrive\Exceptions\PipedriveHttpError;
 use Benhawker\Pipedrive\Exceptions\PipedriveApiError;
+use Benhawker\Pipedrive\Exceptions\PipedriveHttpError;
 
 /**
  * This class does the cURL requests for Pipedrive
@@ -35,16 +35,16 @@ class Curl
     public function __construct($url, $apiKey)
     {
         //set URL and API Key
-        $this->url    = $url;
+        $this->url = $url;
         $this->apiKey = $apiKey;
 
         //Intialise cURL session
         $this->curl = curl_init();
         //Set up options for cURL session
         $this->setOpt(CURLOPT_USERAGENT, self::USER_AGENT)
-             ->setOpt(CURLOPT_HEADER, false)
-             ->setOpt(CURLOPT_RETURNTRANSFER, true)
-             ->setOpt(CURLOPT_HTTPHEADER, array("Accept: application/json"));
+            ->setOpt(CURLOPT_HEADER, false)
+            ->setOpt(CURLOPT_RETURNTRANSFER, true)
+            ->setOpt(CURLOPT_HTTPHEADER, array('Accept: application/json'));
     }
 
     /**
@@ -69,9 +69,9 @@ class Curl
         //set cURL transfer option for get request
         // and get ouput
         return $this->createEndPoint($method, $data)
-                    ->setOpt(CURLOPT_CUSTOMREQUEST, 'GET')
-                    ->setopt(CURLOPT_HTTPGET, true)
-                    ->exec();
+            ->setOpt(CURLOPT_CUSTOMREQUEST, 'GET')
+            ->setopt(CURLOPT_HTTPGET, true)
+            ->exec();
     }
 
     /**
@@ -85,10 +85,10 @@ class Curl
         //set cURL transfer option for post request
         // and get ouput
         return $this->createEndPoint($method)
-                    ->setOpt(CURLOPT_CUSTOMREQUEST, 'POST')
-                    ->setOpt(CURLOPT_POST, true)
-                    ->setOpt(CURLOPT_POSTFIELDS, $this->postfields($data))
-                    ->exec();
+            ->setOpt(CURLOPT_CUSTOMREQUEST, 'POST')
+            ->setOpt(CURLOPT_POST, true)
+            ->setOpt(CURLOPT_POSTFIELDS, $this->postfields($data))
+            ->exec();
     }
 
     /**
@@ -102,9 +102,9 @@ class Curl
         //set cURL transfer option for post request
         // and get ouput
         return $this->createEndPoint($method)
-                    ->setOpt(CURLOPT_CUSTOMREQUEST, 'PUT')
-                    ->setOpt(CURLOPT_POSTFIELDS, http_build_query($data))
-                    ->exec();
+            ->setOpt(CURLOPT_CUSTOMREQUEST, 'PUT')
+            ->setOpt(CURLOPT_POSTFIELDS, http_build_query($data))
+            ->exec();
     }
 
     /**
@@ -118,8 +118,8 @@ class Curl
         //set cURL transfer option for delete request
         // and get ouput
         return $this->createEndPoint($method)
-                    ->setOpt(CURLOPT_CUSTOMREQUEST, 'DELETE')
-                    ->exec();
+            ->setOpt(CURLOPT_CUSTOMREQUEST, 'DELETE')
+            ->exec();
     }
 
     /**
@@ -131,7 +131,7 @@ class Curl
     {
         //get response output and info
         $response = curl_exec($this->curl);
-        $info     = curl_getinfo($this->curl);
+        $info = curl_getinfo($this->curl);
 
         //if there is a curl error throw Exception
         if (curl_error($this->curl)) {
@@ -178,7 +178,7 @@ class Curl
         //create array for api key
         $data['api_token'] = $this->apiKey;
         //make API end point
-        $endPoint = $this->url  . '/' . $method . '?' . http_build_query($data);
+        $endPoint = $this->url . '/' . $method . '?' . http_build_query($data);
         //set API endpoint
         $this->setOpt(CURLOPT_URL, $endPoint);
         //return this object
@@ -187,8 +187,8 @@ class Curl
 
     /**************************************************\
 
-     ALL FOLLOWING METHODS ARE BASED ON :
-     https://github.com/php-curl-class/php-curl-class
+    ALL FOLLOWING METHODS ARE BASED ON :
+    https://github.com/php-curl-class/php-curl-class
 
     \**************************************************/
 
@@ -241,25 +241,25 @@ class Curl
      */
     private function httpBuildMultiQuery(array $data, $key = null)
     {
-            $query = array();
+        $query = array();
 
-            if (empty($data)) {
-                return $key . '=';
-            }
-            $isArrayAssoc = $this->isArrayAssoc($data);
-            // build
-            foreach ($data as $k => $value) {
-                if (is_string($value) || is_numeric($value)) {
-                    $brackets = $isArrayAssoc ? '[' . $k . ']' : '[]';
-                    $query[] = urlencode(is_null($key) ? $k : $key . $brackets) . '=' . rawurlencode($value);
-                } elseif (is_array($value)) {
-                    $nested = is_null($key) ? $k : $key . '[' . $k . ']';
-                    $query[] = $this->httpBuildMultiQuery($value, $nested);
-                }
-            }
-
-            return implode('&', $query);
+        if (empty($data)) {
+            return $key . '=';
         }
+        $isArrayAssoc = $this->isArrayAssoc($data);
+        // build
+        foreach ($data as $k => $value) {
+            if (is_string($value) || is_numeric($value)) {
+                $brackets = $isArrayAssoc ? '[' . $k . ']' : '[]';
+                $query[] = urlencode(is_null($key) ? $k : $key . $brackets) . '=' . rawurlencode($value);
+            } elseif (is_array($value)) {
+                $nested = is_null($key) ? $k : $key . '[' . $k . ']';
+                $query[] = $this->httpBuildMultiQuery($value, $nested);
+            }
+        }
+
+        return implode('&', $query);
+    }
 
     /**
      * From https://github.com/php-curl-class/php-curl-class
@@ -278,7 +278,10 @@ class Curl
      */
     private function isArrayMultiDim($array)
     {
-        if (!is_array($array)) return false;
+        if (!is_array($array)) {
+            return false;
+        }
+
         return !(count($array) === count($array, COUNT_RECURSIVE));
     }
 }
