@@ -47,4 +47,20 @@ $activity = array(
                     );
 
 $pipedrive->activities()->add($activity);
+
+/*
+API endpoints available (see /Library under /src):
+Activities
+Deals
+DealFields
+MailThreads
+Notes
+Organizations
+OrganizationFields
+Persons
+Products
+Pipelines
+Stages
+Users
+*/
 ```
