@@ -1,4 +1,5 @@
-<?php namespace Nekromoff\Pipedrive\Library;
+<?php
+namespace Nekromoff\Pipedrive\Library;
 
 use Nekromoff\Pipedrive\Exceptions\PipedriveMissingFieldError;
 
@@ -41,4 +42,10 @@ class Products
         $params = array('term' => $name);
         return $this->curl->get('products/find', $params);
     }
+
+    public function getAll(array $data)
+    {
+        return $this->curl->get('products/', $data);
+    }
+
 }

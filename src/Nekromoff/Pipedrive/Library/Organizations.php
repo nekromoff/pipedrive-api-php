@@ -1,4 +1,5 @@
-<?php namespace Nekromoff\Pipedrive\Library;
+<?php
+namespace Nekromoff\Pipedrive\Library;
 
 use Nekromoff\Pipedrive\Exceptions\PipedriveMissingFieldError;
 
@@ -51,7 +52,6 @@ class Organizations
         return $this->curl->get('organizations/find', $data);
     }
 
-
     /**
      * Returns all organizations
      *
@@ -76,6 +76,21 @@ class Organizations
             throw new PipedriveMissingFieldError('You must include the "id" of the organization when getting deals');
         }
         return $this->curl->get('organizations/' . $data['id'] . '/deals');
+    }
+
+    /**
+     * Lists mail messages associated with a organization.
+     *
+     * @param  array $data (id, start, limit)
+     * @return array deals
+     */
+    public function mailMessages(array $data)
+    {
+        //if there is no name set throw error as it is a required field
+        if (!isset($data['id'])) {
+            throw new PipedriveMissingFieldError('You must include the "id" of the organization when getting deals');
+        }
+        return $this->curl->get('organizations/' . $data['id'] . '/mailMessages');
     }
 
     /**

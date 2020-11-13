@@ -1,4 +1,5 @@
-<?php namespace Nekromoff\Pipedrive;
+<?php
+namespace Nekromoff\Pipedrive;
 
 /**
  * Pipedrive API wrapper class v0.1
@@ -92,6 +93,12 @@ class Pipedrive
      * @var Products Object
      */
     protected $products;
+    // users
+    protected $users;
+
+    protected $stages;
+
+    protected $pipelines;
 
     /**
      * Set up API url and load library classes
@@ -125,6 +132,9 @@ class Pipedrive
         $this->organizationFields = new Library\OrganizationFields($this);
         $this->mailThreads = new Library\MailThreads($this);
         $this->products = new Library\Products($this);
+        $this->users = new Library\Users($this);
+        $this->stages = new Library\Stages($this);
+        $this->pipelines = new Library\Pipelines($this);
     }
 
     /**
@@ -135,6 +145,36 @@ class Pipedrive
     public function curl()
     {
         return $this->curl;
+    }
+
+    /**
+     * Returns the Pipedrive Stages Object
+     *
+     * @return \Benhawker\Pipedrive\Library\Persons
+     */
+    public function stages()
+    {
+        return $this->stages;
+    }
+
+    /**
+     * Returns the Pipedrive Pipelines Object
+     *
+     * @return \Benhawker\Pipedrive\Library\Persons
+     */
+    public function pipelines()
+    {
+        return $this->pipelines;
+    }
+
+    /**
+     * Returns the Pipedrive Users Object
+     *
+     * @return \Benhawker\Pipedrive\Library\Persons
+     */
+    public function users()
+    {
+        return $this->users;
     }
 
     /**
